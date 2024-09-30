@@ -1,0 +1,52 @@
+/* Login.css */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+.email-input, .username-input, .password-input {
+  width: 100%;
+  max-width: 320px;
+  font-size: 1.2rem;
+  padding: 12px;
+  border-bottom: 2px solid #ccc;
+  margin-bottom: 1.5rem;
+}
+
+.login-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: left;
+  height: 100%;
+}
+
+.login-title {
+  margin-left: 10px;
+  font-size: 2.5rem; /* Adjusted for better fit */
+  font-weight: 500;
+  text-align: left;
+  margin-bottom: 1.5rem;
+  color: #000;
+}
+
+.auth-button {
+  width: 100%;
+  max-width: 320px;
+  font-size: 1rem;
+  padding: 12px;
+  margin-top: 1rem;
+}
+
+.error-message {
+  width: 100%;
+  max-width: 320px;
+  color: red;
+  text-align: left;
+  margin-bottom: 1rem;
+}

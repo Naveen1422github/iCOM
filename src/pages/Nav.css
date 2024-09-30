@@ -1,0 +1,20 @@
+.nav-buttons {
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 10px;
+  background-color: white; /* Ensures it stands out from the background */
+  box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.1); /* Optional shadow for better visibility */
+}
+
+.cart-btn {
+  font-size: 14px;
+  width: 50%;
+  height: 40px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}

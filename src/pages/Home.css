@@ -1,0 +1,128 @@
+/* Home.css */
+
+.recent-orders {
+  padding: 16px;
+  background-color: #f0f0f0;
+}
+
+.scroll-container {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  gap: 100px; /* Adds space between cards */
+  -webkit-overflow-scrolling: touch;
+}
+
+.scroll-container::-webkit-scrollbar {
+  display: none; /* Hide scrollbar */
+}
+
+.cardHome {
+  flex: 0 0 auto; /* Ensures the card does not shrink or expand */
+  width: 250px; /* Reduced width to prevent overlap */
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: flex-start;
+  background-color: #ffffff;
+  border: 2px solid #b6b6b6;
+  color: #b6b6b6;
+  border-radius: 0%;
+  height: 400px;
+  margin-right: 10px; /* Space between cards */
+}
+
+.cardText {
+  padding: 0;
+  padding-top: 10px;
+  padding-left: 10px;
+}
+
+.imgContainer {
+  height: 280px;
+  background-color: #ffffff;
+}
+
+.cardHome img {
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 10px;
+  height: 280px;
+}
+
+.order-item-text1 {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  font-size: small;
+  font-weight: 400;
+}
+
+.order-item-text2 {
+  font-size: medium;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.order-item-btn {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  align-items: left;
+  width: 70%; /* Make button full width */
+  height: 15px;
+  font-size: small;
+}
+
+.order-item-btn div {
+  width: 100%;
+}
+
+.product-details {
+  margin: 24px 0;
+  padding: 16px;
+  background-color: #f0f0f0;
+  border-radius: 10px;
+}
+
+/* Scanner Section Styling */
+.scanner-section {
+  position: fixed;
+  bottom: 60px; /* Adjust based on Nav height */
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 1000; /* Ensure it's above other elements */
+}
+
+.scanner-button {
+  font-size: 24px;
+  background-color: #000;
+  color: #fff;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.captured-image {
+  margin-top: 10px;
+  max-width: 200px;
+  max-height: 200px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.captured-image img {
+  width: 100%;
+  height: auto;
+}
+ion-fab-button {
+  margin-bottom: 10px;
+}

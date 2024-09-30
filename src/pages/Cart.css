@@ -1,0 +1,66 @@
+.cart-page {
+  padding: 16px;
+}
+
+.cart-list {
+  margin-top: 16px;
+}
+
+.cartCard {
+  display: flex;
+  flex-direction: column;
+  position: relative; /* Enable positioning of child elements */
+}
+
+.delete {
+  position: absolute; /* Position the delete button */
+  top: 1px; /* Adjust as needed */
+  right: 1px; /* Adjust as needed */
+  z-index: 1; /* Ensure the button appears in front of other elements */
+}
+.deleteBox {
+  width: 4px;
+  height: 60px
+}
+
+.cart-item-info {
+  flex-grow: 1;
+}
+
+.cart-item-sizes {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.size-box {
+  border: 1px solid #ccc;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  text-align: center;
+  min-width: 30px;
+}
+
+.size-box:hover {
+  background-color: #eee;
+}
+
+.size-box.selected {
+  background-color: #000;
+  color: white;
+}
+
+.cart-footer {
+  display: flex;
+  justify-content: center;
+  padding: 20px 0;
+}
+
+.place-order-btn {
+  color: white;
+  padding: 12px;
+  width: 100%;
+  text-align: center;
+  border-radius: 5px;
+}
