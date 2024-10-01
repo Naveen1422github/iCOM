@@ -20,17 +20,16 @@ import {
   IonFabButton,
   IonToast,
   IonPopover,
-  IonSpinner, // For loading indicator
+  IonSpinner,
 } from '@ionic/react';
 import { cameraOutline, cart, personCircleOutline } from 'ionicons/icons';
 import { useHistory } from 'react-router-dom';
-import { auth } from '../firebaseConfig'; // Correct import
+import { auth } from '../firebaseConfig'; // Ensure this path is correct
 import { onAuthStateChanged } from 'firebase/auth';
-import axios from 'axios'; // Import axios
 import './Home.css';
 import Nav from './Nav';
 import Cart from './Cart';
-import userProfile from './userProfile';
+// Removed unused import 'userProfile' as it might cause confusion. Use navigateToProfile instead.
 
 interface Product {
   id: number;
@@ -71,16 +70,27 @@ const Home: React.FC = () => {
     if (isAuthenticated) {
       fetchProducts();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAuthenticated]);
 
-  // Function to fetch products from the backend
+  // Function to fetch products from the backend using fetch API
   const fetchProducts = async () => {
     setIsLoading(true);
     setError(null);
     try {
-      // Replace the URL with your backend endpoint
-      const response = await axios.get<Product[]>('https://sidmu79054.s3.eu-north-1.amazonaws.com/harsh/obj.json');
-      setProducts(response.data);
+      // Replace the URL with your actual bucket endpoint that returns the products JSON
+      const response = await fetch(
+        'https://sidmu79054.s3.eu-north-1.amazonaws.com/harsh/obj.json/products'
+      );
+
+      if (!response.ok) {
+        throw new Error(`Network response was not ok: ${response.statusText}`);
+      }
+
+      // Assuming the response is a JSON array of products
+      const data: Product[] = await response.json();
+
+      setProducts(data);
     } catch (err) {
       console.error('Error fetching products:', err);
       setError('Failed to load products. Please try again later.');
@@ -109,7 +119,7 @@ const Home: React.FC = () => {
       <IonHeader>
         <IonToolbar>
           <IonTitle>Recent Orders</IonTitle>
-          
+
           {/* Profile Icon Section */}
           {isAuthenticated && (
             <div className="profile-container">
@@ -117,6 +127,7 @@ const Home: React.FC = () => {
                 icon={personCircleOutline}
                 size="large"
                 onClick={navigateToProfile}
+                // Uncomment the lines below to enable popover on hover
                 // onMouseEnter={() => setShowPopover(true)}
                 // onMouseLeave={() => setShowPopover(false)}
               />
@@ -152,18 +163,23 @@ const Home: React.FC = () => {
                   {products.map((product) => (
                     <IonCol size="6" key={product.id}>
                       <IonCard className="cardHome" color="light">
-                        <div className='imgContainer'>
+                        <div className="imgContainer">
                           <img alt={product.name} src={product.img} />
                         </div>
-                        <IonCardHeader className='cardText'>
-                          <IonCardSubtitle className='order-item-text1'>{product.code}</IonCardSubtitle>
-                          <IonCardTitle className='order-item-text2'>{product.name}</IonCardTitle>
+                        <IonCardHeader className="cardText">
+                          <IonCardSubtitle className="order-item-text1">
+                            {product.code}
+                          </IonCardSubtitle>
+                          <IonCardTitle className="order-item-text2">
+                            {product.name}
+                          </IonCardTitle>
                         </IonCardHeader>
                         <IonCardContent>
                           <IonButton
                             onClick={() => addToCart(product)}
                             className="order-item-btn"
-                            color="medium">
+                            color="medium"
+                          >
                             <IonIcon slot="start" icon={cart} />
                             Add to Cart
                           </IonButton>
@@ -178,8 +194,14 @@ const Home: React.FC = () => {
         ) : (
           // Content for unauthenticated users
           <div className="unauthenticated-container">
-            <IonText className="unauthenticated-text">Please log in to access this page.</IonText>
-            <IonButton onClick={navigateToLogin} color="primary" className="login-button">
+            <IonText className="unauthenticated-text">
+              Please log in to access this page.
+            </IonText>
+            <IonButton
+              onClick={navigateToLogin}
+              color="primary"
+              className="login-button"
+            >
               Go to Login
             </IonButton>
           </div>
@@ -187,7 +209,12 @@ const Home: React.FC = () => {
 
         {/* Camera Section */}
         {isAuthenticated && (
-          <IonFab className="scannerIcon" vertical="bottom" horizontal="center" slot="fixed">
+          <IonFab
+            className="scannerIcon"
+            vertical="bottom"
+            horizontal="center"
+            slot="fixed"
+          >
             <IonFabButton color="dark">
               <IonIcon icon={cameraOutline} />
             </IonFabButton>
@@ -210,8 +237,8 @@ const Home: React.FC = () => {
             text: 'Login',
             handler: () => {
               navigateToLogin();
-            }
-          }
+            },
+          },
         ]}
       />
     </IonPage>
