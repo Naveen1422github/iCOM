@@ -79,7 +79,7 @@ const Home: React.FC = () => {
     setError(null);
     try {
       // Replace the URL with your backend endpoint
-      const response = await axios.get<Product[]>('https://main.d34dwu2oi6m3n8.amplifyapp.com/products');
+      const response = await axios.get<Product[]>('https://sidmu79054.s3.eu-north-1.amazonaws.com/harsh/obj.json');
       setProducts(response.data);
     } catch (err) {
       console.error('Error fetching products:', err);
