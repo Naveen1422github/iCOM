@@ -69,7 +69,7 @@ export async function registerUser(email: string, password: string): Promise<boo
 
     // Send verification email
     await sendEmailVerification(res.user, {
-      url: 'http://localhost:8100/verify',  // Update this URL for production
+      url: 'https://main.d34dwu2oi6m3n8.amplifyapp.com/verify',  // Update this URL for production
     });
     console.log('Verification Email Sent');
     return true;

@@ -20,32 +20,36 @@ import {
   IonFabButton,
   IonToast,
   IonPopover,
+  IonSpinner, // For loading indicator
 } from '@ionic/react';
 import { cameraOutline, cart, personCircleOutline } from 'ionicons/icons';
 import { useHistory } from 'react-router-dom';
 import { auth } from '../firebaseConfig'; // Correct import
 import { onAuthStateChanged } from 'firebase/auth';
+import axios from 'axios'; // Import axios
 import './Home.css';
 import Nav from './Nav';
 import Cart from './Cart';
 import userProfile from './userProfile';
 
+interface Product {
+  id: number;
+  name: string;
+  code: string;
+  img: string;
+}
+
 const Home: React.FC = () => {
   const [capturedImage, setCapturedImage] = useState<string | null>(null);
-  const [cartItems, setCartItems] = useState<any[]>([]); // Cart items state
+  const [cartItems, setCartItems] = useState<Product[]>([]); // Cart items state
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false); // Auth state
   const [showToast, setShowToast] = useState<boolean>(false); // Toast visibility
   const [showPopover, setShowPopover] = useState(false); // For hover effect on profile icon
   const [username, setUsername] = useState<string>(''); // Username state
+  const [products, setProducts] = useState<Product[]>([]); // Products state
+  const [isLoading, setIsLoading] = useState<boolean>(false); // Loading state
+  const [error, setError] = useState<string | null>(null); // Error state
   const history = useHistory();
-
-  // Dummy product data
-  const products = [
-    { id: 1, name: 'Product 1', code: 'P001', img: 'https://images.unsplash.com/photo-1485218126466-34e6392ec754?q=80&w=871&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' },
-    { id: 2, name: 'Product 2', code: 'P002', img: 'https://via.placeholder.com/150' },
-    { id: 3, name: 'Product 3', code: 'P003', img: 'https://images.unsplash.com/photo-1485218126466-34e6392ec754?q=80&w=871&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' },
-    { id: 4, name: 'Product 4', code: 'P004', img: 'https://via.placeholder.com/150' }
-  ];
 
   useEffect(() => {
     // Set up the authentication state observer
@@ -63,8 +67,30 @@ const Home: React.FC = () => {
     return () => unsubscribe();
   }, []);
 
+  useEffect(() => {
+    if (isAuthenticated) {
+      fetchProducts();
+    }
+  }, [isAuthenticated]);
+
+  // Function to fetch products from the backend
+  const fetchProducts = async () => {
+    setIsLoading(true);
+    setError(null);
+    try {
+      // Replace the URL with your backend endpoint
+      const response = await axios.get<Product[]>('http://localhost:3001/products');
+      setProducts(response.data);
+    } catch (err) {
+      console.error('Error fetching products:', err);
+      setError('Failed to load products. Please try again later.');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   // Add a product to the cart
-  const addToCart = (product: any) => {
+  const addToCart = (product: Product) => {
     setCartItems((prevItems) => [...prevItems, product]);
   };
 
@@ -112,33 +138,42 @@ const Home: React.FC = () => {
       <IonContent>
         {isAuthenticated ? (
           <div className="recent-orders">
-            <IonGrid>
-              <IonRow className="scroll-container">
-                {/* Product List */}
-                {products.map((product) => (
-                  <IonCol size="6" key={product.id}>
-                    <IonCard className="cardHome" color="light">
-                      <div className='imgContainer'>
-                        <img alt={product.name} src={product.img} />
-                      </div>
-                      <IonCardHeader className='cardText'>
-                        <IonCardSubtitle className='order-item-text1'>{product.code}</IonCardSubtitle>
-                        <IonCardTitle className='order-item-text2'>{product.name}</IonCardTitle>
-                      </IonCardHeader>
-                      <IonCardContent>
-                        <IonButton
-                          onClick={() => addToCart(product)}
-                          className="order-item-btn"
-                          color="medium">
-                          <IonIcon slot="start" icon={cart} />
-                          Add to Cart
-                        </IonButton>
-                      </IonCardContent>
-                    </IonCard>
-                  </IonCol>
-                ))}
-              </IonRow>
-            </IonGrid>
+            {isLoading ? (
+              <div className="loading-container">
+                <IonSpinner name="crescent" />
+                <IonText>Loading products...</IonText>
+              </div>
+            ) : error ? (
+              <IonText color="danger">{error}</IonText>
+            ) : (
+              <IonGrid>
+                <IonRow className="scroll-container">
+                  {/* Product List */}
+                  {products.map((product) => (
+                    <IonCol size="6" key={product.id}>
+                      <IonCard className="cardHome" color="light">
+                        <div className='imgContainer'>
+                          <img alt={product.name} src={product.img} />
+                        </div>
+                        <IonCardHeader className='cardText'>
+                          <IonCardSubtitle className='order-item-text1'>{product.code}</IonCardSubtitle>
+                          <IonCardTitle className='order-item-text2'>{product.name}</IonCardTitle>
+                        </IonCardHeader>
+                        <IonCardContent>
+                          <IonButton
+                            onClick={() => addToCart(product)}
+                            className="order-item-btn"
+                            color="medium">
+                            <IonIcon slot="start" icon={cart} />
+                            Add to Cart
+                          </IonButton>
+                        </IonCardContent>
+                      </IonCard>
+                    </IonCol>
+                  ))}
+                </IonRow>
+              </IonGrid>
+            )}
           </div>
         ) : (
           // Content for unauthenticated users
