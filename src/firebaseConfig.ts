@@ -1,4 +1,3 @@
-// firebaseConfig.ts
 import { initializeApp } from 'firebase/app';
 import { 
   getAuth, 
@@ -8,6 +7,8 @@ import {
   applyActionCode, 
   onAuthStateChanged 
 } from 'firebase/auth';
+import { getFirestore, collection, addDoc, Timestamp } from 'firebase/firestore'; // Import Firestore functions
+import { getStorage } from 'firebase/storage';
 
 // Your Firebase configuration object
 const firebaseConfig = {
@@ -23,15 +24,17 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
+export const db = getFirestore(app); // Initialize Firestore
+export const storage = getStorage(app); // Initialize Storage if needed
 
-/**
+/**i 
  * Logs in a user using email and password.
  * @param email - The email of the user.
  * @param password - The password of the user.
  * @returns A promise that resolves to true if login is successful, otherwise false.
  */
 export async function loginUser(email: string, password: string): Promise<boolean> {
-    console.log("email",email,"password",password);
+    console.log("email", email, "password", password);
     
   try {
     const res = await signInWithEmailAndPassword(auth, email, password);
@@ -69,7 +72,7 @@ export async function registerUser(email: string, password: string): Promise<boo
 
     // Send verification email
     await sendEmailVerification(res.user, {
-      url: 'https://main.d34dwu2oi6m3n8.amplifyapp.com/verify',  // Update this URL for production
+      url: 'http://localhost:8100/verify',  // Update this URL for production
     });
     console.log('Verification Email Sent');
     return true;

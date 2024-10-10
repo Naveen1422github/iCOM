@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';  // Import useEffect for animation timing
 import { IonContent, IonHeader, IonPage, IonToolbar, IonInput, IonButton, IonText, IonItem, IonIcon } from '@ionic/react';
 import { useHistory } from 'react-router-dom';
 import { eyeOff, eye } from 'ionicons/icons';  // Import icons
@@ -6,19 +6,26 @@ import './Login.css';
 import { loginUser, registerUser } from '../firebaseConfig';  // Import your Firebase config
 
 const Login: React.FC = () => {
-  const [isSignUp, setIsSignUp] = useState<boolean>(false);  // State to toggle between login and signup
-  const [email, setEmail] = useState<string>("");  // Now using email for both login and signup
+  const [isSignUp, setIsSignUp] = useState<boolean>(false);
+  const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [showPassword, setShowPassword] = useState<boolean>(false);  // State to toggle password visibility
+  const [showPassword, setShowPassword] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string>("");
 
   const history = useHistory();
 
+  const [isAnimationComplete, setIsAnimationComplete] = useState<boolean>(false);  // Animation state
+
+  // Run the animation and hide it after 3.5s
+  useEffect(() => {
+    setTimeout(() => {
+      setIsAnimationComplete(true);
+    }, 2000);  // Total duration of animation (2s fall + 1.5s spread)
+  }, []);
+
   // Login function
   async function login() {
-    if(email && password)
-    {
-
+    if (email && password) {
       try {
         const res = await loginUser(email, password);
         if (res) {
@@ -31,7 +38,6 @@ const Login: React.FC = () => {
       }
     } else {
       setErrorMessage('Incomplete credentials');
-
     }
   }
 
@@ -57,57 +63,59 @@ const Login: React.FC = () => {
 
   return (
     <IonPage>
+      {/* Animation container */}
+      { !isAnimationComplete && (
+    <div id="drop-container">
+      <div id="drop"></div>
+      <div id="splash-text">NUM ERO UNO</div> {/* Text displayed during splash */}
+    </div>
+  )}
+
+      {/* Login Form */}
       <IonHeader>
-        <IonToolbar>
-          <IonButton slot="end" onClick={toggleSignUp}>
-            {isSignUp ? "Existing User?" : "New User?"}
-          </IonButton>
-        </IonToolbar>
+        
       </IonHeader>
 
-      <div className="container">
-        <IonContent className="ion-padding">
+        <IonContent className="FullPage">
           <div className="login-container">
             <IonText className="login-title">
               {isSignUp ? "Create a new account" : "Log into your account"}
             </IonText>
 
             {/* Common Email Input */}
-            <IonItem lines="none">
-              <IonInput
-                type="email"
-                placeholder="Enter your Email"
-                value={email}
-                onIonChange={(e) => setEmail(e.detail.value!)}
-                className="email-input"
-              />
-            </IonItem>
-
-            {/* Password Input with Eye Icon for Toggle */}
-            <IonItem lines="none">
-              <IonInput
-                type={showPassword ? "text" : "password"}  // Toggle between 'text' and 'password'
-                placeholder="Enter Password"
-                value={password}
-                onIonChange={(e) => setPassword(e.detail.value!)}
-                className="password-input"
-              />
-              <IonIcon
-                slot="end"
-                icon={showPassword ? eyeOff : eye}  // Toggle icon between eyeOff and eye
-                onClick={() => setShowPassword(!showPassword)}  // Toggle the state
-                style={{ cursor: 'pointer' }}
-              />
-            </IonItem>
-
+            {/* Email Input */}
+<IonItem lines="none" className="password-input">
+<IonInput
+    type="email"
+    placeholder="Enter your Email"
+    value={email}
+    onIonChange={(e) => setEmail(e.detail.value!)}
+    className="pass"
+  />
+</IonItem>
+ 
+{/* Password Input with Eye Icon for Toggle */}
+<IonItem lines="none" className="password-input">
+<IonInput
+    type={showPassword ? "text" : "password"}
+    placeholder="Enter Password"
+    value={password}
+    onIonChange={(e) => setPassword(e.detail.value!)}
+  />
+<IonIcon
+    slot="end"
+    icon={showPassword ? eyeOff : eye}
+    onClick={() => setShowPassword(!showPassword)}
+  />
+</IonItem>
             {/* Conditional rendering for login or sign-up */}
             {isSignUp ? (
-              <IonButton expand="block" onClick={signUp} className="otp-button">
+              <IonButton shape="round" expand="block" onClick={signUp} className="otp-button">
                 Sign Up
               </IonButton>
             ) : (
-              <IonButton expand="block" onClick={login} className="otp-button">
-                Login
+              <IonButton shape="round" expand="block" onClick={login} className="otp-button">
+                Login 
               </IonButton>
             )}
 
@@ -116,9 +124,15 @@ const Login: React.FC = () => {
                 {errorMessage}
               </IonText>
             )}
+          <IonToolbar className='logbottom'>
+
+            <h3>{isSignUp ? "Already a user?" : "Don't have an account ?"}</h3>
+          <IonButton slot="end" onClick={toggleSignUp} fill="outline">
+            {isSignUp ? "Login" : "Register"}
+          </IonButton>
+        </IonToolbar>
           </div>
         </IonContent>
-      </div>
     </IonPage>
   );
 };

@@ -1,52 +1,176 @@
-/* Login.css */
-
-.container {
+.FullPage{
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  width: 100%;
+align-items: center;
+  --background: #b3e4c9; 
+  /* Your custom background color */
 }
-
-.email-input, .username-input, .password-input {
+.password-input {
   width: 100%;
   max-width: 320px;
   font-size: 1.2rem;
   padding: 12px;
-  border-bottom: 2px solid #ccc;
+  border-bottom: 1px solid #04ae26;
   margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center; /* Align input and eye icon vertically */
+  border-radius: 50px;
+  padding-right: 10px; /* Add padding for the icon */
+  box-shadow: inset 0 1px 15px rgba(1, 4, 0, 0.1);
 }
+.pass{
+   
+  opacity: 0.7;
+}
+.logbottom{
+  position: absolute;
+  margin-top: 810px;
+  width: 342px;
+}
+ 
+/* Eye icon for password toggle */
+.password-input ion-icon {
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: #a9a9a9; /* Gray color for icon */
+  padding: 0 10px; /* Space between input and icon */
+}
+
 
 .login-container {
+  width: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+  
+  .login-title {
+    margin-left: 10px;
+    font-size: 3.5rem;
+    font-weight: 500;
+    text-align: left;
+    margin-bottom: 2rem;
+    color: #000;
+  }
+
+ 
+  .otp-button {
+    width: 100%;
+    max-width: 320px;
+    font-size: 1rem;
+    padding: 12px;
+    border-radius: 50%;
+  }
+  
+ /* Drop container - black screen during animation */
+#drop-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: black;
   display: flex;
-  flex-direction: column;
+  align-items: center;
   justify-content: center;
-  align-items: left;
-  height: 100%;
+  z-index: 1000;
 }
 
-.login-title {
-  margin-left: 10px;
-  font-size: 2.5rem; /* Adjusted for better fit */
-  font-weight: 500;
-  text-align: left;
-  margin-bottom: 1.5rem;
-  color: #000;
+/* Drop element - shaped like a water droplet */
+#drop {
+  width: 30px;
+  height: 40px;
+  background-color: white;
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;  /* Drop shape */
+  position: relative;
+  animation: dropFall 1.1s ease-in forwards, dropSplash 1.5s 1.1s ease-in forwards;
 }
 
-.auth-button {
-  width: 100%;
-  max-width: 320px;
-  font-size: 1rem;
-  padding: 12px;
-  margin-top: 1rem;
+/* Text that will appear during splash */
+#splash-text {
+  position: absolute;
+  font-size: 6rem;
+  text-align: center;
+  font-weight: bold;
+  color: white;
+  opacity: 0;
+  animation: textReveal 1.1s 1.1s forwards;  /* Start revealing with splash */
+  z-index: 999;  /* Ensure text stays above the splash */
+  
+  /* Masking with the splash */
+  -webkit-mask-image: radial-gradient(circle, white 45%, transparent 75%);  /* Increased white portion */
+  mask-image: radial-gradient(circle, white 45%, transparent 75%);}
+
+/* Drop falling */
+@keyframes dropFall {
+  0% {
+    transform: translateY(-1000px) scaleY(1);  /* Normal state */
+    opacity: 1;
+  }
+  70% {
+    transform: translateY(-10px) scaleY(2.2);  /* Slightly stretched during fall */
+    opacity: 1;
+  }
+  90% {
+    transform: translateY(0) scaleY(0.01);  /* Slightly stretched during fall */
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0) scaleY(0.01);  /* Slightly stretched during fall */
+    opacity: 1;
+  }
 }
 
-.error-message {
-  width: 100%;
-  max-width: 320px;
-  color: red;
-  text-align: left;
-  margin-bottom: 1rem;
+/* Splash effect */
+@keyframes dropSplash {
+  0% {
+    transform: scale(1);
+    border-radius: 50% 50% 50% 50%;
+    opacity: 1;
+  }
+  30% {
+    transform: scale(5);
+    border-radius: 60% 40% 60% 40%;  /* Splash irregularity */
+    opacity: 0.8;
+  }
+  60% {
+    transform: scale(50);
+    border-radius: 70% 30% 70% 30%;  /* More spread out */
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(100);
+    border-radius: 50%;
+    opacity: 0;
+  }
 }
+@keyframes fadeToWhite {
+  0% {
+    background-color: black;
+  }
+  100% {
+    background-color: white;
+  }
+}
+/* Text reveal animation */
+@keyframes textReveal {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);  /* Start small */
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1);  /* Grow and fade in */
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1.2);  /* Fully visible and slightly larger */
+  }
+}
+
+/* Hide animation container after completion */
+.hidden {
+  display: none;
+}
+

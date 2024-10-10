@@ -1,38 +1,33 @@
 import React from 'react';
-import { IonButton, IonIcon } from '@ionic/react';
+import { IonButton, IonIcon } from '@ionic/react';  
 import { useHistory } from 'react-router-dom';
 import { cartOutline, homeOutline } from 'ionicons/icons';
 import './Nav.css';
- 
-interface NavProps {
-  cartItems: any[]; // Accept cartItems as a prop
-}
- 
-const Nav: React.FC<NavProps> = ({ cartItems }) => {
+import { useCart } from '../contexts/CartContext'; // Import useCart
+
+const Nav: React.FC = () => {
   const history = useHistory();
- 
+  const { cartItems } = useCart(); // Use cart context
+
   const goToHomePage = () => {
     history.push('/home');
   };
- 
+
   const goToCartPage = () => {
-    history.push({
-      pathname: '/cart',
-      state: { cartItems } // Passing cart items to the cart page
-    });
+    history.push('/cart');
   };
- 
+
   return (
-<div className="nav-buttons">
-<IonButton color="light" className="cart-btn" onClick={goToCartPage}>
-<IonIcon icon={cartOutline} />
+    <div className="nav-buttons">
+      <IonButton color="light" className="cart-btn" onClick={goToCartPage}>
+        <IonIcon icon={cartOutline} />
         ({cartItems.length}) {/* Display cart items count */}
-</IonButton>
-<IonButton color="light" className="cart-btn" onClick={goToHomePage}>
-<IonIcon icon={homeOutline} />
-</IonButton>
-</div>
+      </IonButton>
+      <IonButton color="light" className="cart-btn" onClick={goToHomePage}>
+        <IonIcon icon={homeOutline} />
+      </IonButton>
+    </div>
   );
 };
- 
+
 export default Nav;

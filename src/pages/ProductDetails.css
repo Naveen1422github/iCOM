@@ -1,0 +1,179 @@
+/* Basic styling */
+.product-container {
+    width: 100%;
+    padding: 20px;
+    background-color: #f4f4f4;
+    font-family: Arial, sans-serif;
+    max-height: 100vh; /* Set maximum height */
+    overflow-y: auto; /* Enable vertical scrolling */
+    margin-bottom: 60px;
+}
+
+/* Header */
+.product-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+  
+  .back-button {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+  }
+  
+  .icons i {
+    font-size: 24px;
+    margin-left: 10px;
+    cursor: pointer;
+  }
+  
+  /* Image styling */
+  .product-image {
+    text-align: center;
+    margin: 20px 0;
+  }
+  
+  .product-image img {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 10px;
+  }
+  
+  /* Product info section */
+  .product-info {
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+  }
+  
+  .product-brand {
+    font-size: 22px;
+    font-weight: bold;
+  }
+  
+  .product-title {
+    color: #666;
+    font-size: 16px;
+  }
+  
+  .rating {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: #555;
+  }
+  
+  .rating span {
+    margin-right: 5px;
+  }
+  
+  /* Pricing section */
+  .product-pricing {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+  }
+  
+  .current-price {
+    font-size: 22px;
+    color: #000;
+    margin-right: 10px;
+  }
+  
+  .original-price {
+    text-decoration: line-through;
+    color: #999;
+    margin-right: 10px;
+  }
+  
+  .discount {
+    color: #e74c3c;
+  }
+  
+  .tax-inclusion {
+    font-size: 12px;
+    color: #888;
+  }
+  
+  .people-bought {
+    font-size: 14px;
+    color: #555;
+    margin: 10px 0;
+  }
+  
+  /* Tribe info */
+  .tribe-info {
+    background-color: #fdf1d4;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 10px 0;
+  }
+  
+  .tribe-price {
+    font-size: 20px;
+    color: #ff9900;
+    font-weight: bold;
+  }
+  
+  .tribe-discount {
+    font-size: 14px;
+    color: #888;
+  }
+  
+  .get-tribe {
+    background-color: #ff9900;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  /* Add to Bag button */
+  .add-to-bag {
+    width: 100%;
+    background-color: #ffdd00;
+    border: none;
+    padding: 15px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+  }
+  .modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .modal-content {
+    position: relative;
+    max-width: 80%;
+    max-height: 80%;
+  }
+  
+  .modal-content img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+  }
+  
+  .close-button {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 2rem;
+    color: white;
+    cursor: pointer;
+  }
+  

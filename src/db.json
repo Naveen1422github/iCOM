@@ -1,139 +1,136 @@
 {
-    "products": [
-
-
-
-        
-              {
-                "id": 21,
-                "name": "Product 1",
-                "code": "$1201",
-                "img": "https://images.unsplash.com/photo-1485218126466-34e6392ec754?q=80&w=871&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA=="
-              },
-             
-             
-          
-          
-      {
-        "id": 1,
-        "name": "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
-        "code": "$1201",
-        "img": "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg"
-      },
-      {
-        "id": 2,
-        "name": "Mens Casual Premium Slim Fit T-Shirts",
-        "code": "$1202",
-        "img": "https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg"
-      },
-      {
-        "id": 3,
-        "name": "Mens Cotton Jacket",
-        "code": "$1203",
-        "img": "https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg"
-      },
-      {
-        "id": 4,
-        "name": "Mens Casual Slim Fit",
-        "code": "$1204",
-        "img": "https://fakestoreapi.com/img/71YXzeOuslL._AC_UY879_.jpg"
-      },
-      {
-        "id": 5,
-        "name": "John Hardy Women's Legends Naga Gold & Silver Dragon Station Chain Bracelet",
-        "code": "$1205",
-        "img": "https://fakestoreapi.com/img/71pWzhdJNwL._AC_UL640_QL65_ML3_.jpg"
-      },
-      {
-        "id": 6,
-        "name": "Solid Gold Petite Micropave",
-        "code": "$1206",
-        "img": "https://fakestoreapi.com/img/61sbMiUnoGL._AC_UL640_QL65_ML3_.jpg"
-      },
-      {
-        "id": 7,
-        "name": "White Gold Plated Princess",
-        "code": "$1207",
-        "img": "https://fakestoreapi.com/img/71YAIFU48IL._AC_UL640_QL65_ML3_.jpg"
-      },
-      {
-        "id": 8,
-        "name": "Pierced Owl Rose Gold Plated Stainless Steel Double",
-        "code": "$1208",
-        "img": "https://fakestoreapi.com/img/51UDEzMJVpL._AC_UL640_QL65_ML3_.jpg"
-      },
-      {
-        "id": 9,
-        "name": "WD 2TB Elements Portable External Hard Drive - USB 3.0",
-        "code": "$1209",
-        "img": "https://fakestoreapi.com/img/61IBBVJvSDL._AC_SY879_.jpg"
-      },
-      {
-        "id": 10,
-        "name": "SanDisk SSD PLUS 1TB Internal SSD - SATA III 6 Gb/s",
-        "code": "$1210",
-        "img": "https://fakestoreapi.com/img/61U7T1koQqL._AC_SX679_.jpg"
-      },
-      {
-        "id": 11,
-        "name": "Silicon Power 256GB SSD 3D NAND A55 SLC Cache Performance Boost SATA III 2.5",
-        "code": "$1211",
-        "img": "https://fakestoreapi.com/img/71kWymZ+c+L._AC_SX679_.jpg"
-      },
-      {
-        "id": 12,
-        "name": "WD 4TB Gaming Drive Works with Playstation 4 Portable External Hard Drive",
-        "code": "$1212",
-        "img": "https://fakestoreapi.com/img/61mtL65D4cL._AC_SX679_.jpg"
-      },
-      {
-        "id": 13,
-        "name": "Acer SB220Q bi 21.5 inches Full HD (1920 x 1080) IPS Ultra-Thin",
-        "code": "$1213",
-        "img": "https://fakestoreapi.com/img/81QpkIctqPL._AC_SX679_.jpg"
-      },
-      {
-        "id": 14,
-        "name": "Samsung 49-Inch CHG90 144Hz Curved Gaming Monitor (LC49HG90DMNXZA) – Super Ultrawide Screen QLED",
-        "code": "$1214",
-        "img": "https://fakestoreapi.com/img/81Zt42ioCgL._AC_SX679_.jpg"
-      },
-      {
-        "id": 15,
-        "name": "BIYLACLESEN Women's 3-in-1 Snowboard Jacket Winter Coats",
-        "code": "$1215",
-        "img": "https://fakestoreapi.com/img/51Y5NI-I5jL._AC_UX679_.jpg"
-      },
-      {
-        "id": 16,
-        "name": "Lock and Love Women's Removable Hooded Faux Leather Moto Biker Jacket",
-        "code": "$1216",
-        "img": "https://fakestoreapi.com/img/81XH0e8fefL._AC_UY879_.jpg"
-      },
-      {
-        "id": 17,
-        "name": "Rain Jacket Women Windbreaker Striped Climbing Raincoats",
-        "code": "$1217",
-        "img": "https://fakestoreapi.com/img/71HblAHs5xL._AC_UY879_-2.jpg"
-      },
-      {
-        "id": 18,
-        "name": "MBJ Women's Solid Short Sleeve Boat Neck V",
-        "code": "$1218",
-        "img": "https://fakestoreapi.com/img/71z3kpMAYsL._AC_UY879_.jpg"
-      },
-      {
-        "id": 19,
-        "name": "Opna Women's Short Sleeve Moisture",
-        "code": "$1219",
-        "img": "https://fakestoreapi.com/img/51eg55uWmdL._AC_UX679_.jpg"
-      },
-      {
-        "id": 20,
-        "name": "DANVOUY Womens T Shirt Casual Cotton Short",
-        "code": "$1220",
-        "img": "https://fakestoreapi.com/img/61pHAEJ4NML._AC_UX679_.jpg"
-      }
-    ]
-  }
-  
+  "products": [
+    {
+      "id": 21,
+      "name": "Product 1",
+      "code": "$1201",
+      "price": 50.99,
+      "img": "https://images.unsplash.com/photo-1485218126466-34e6392ec754?q=80&w=871&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA==",
+      "description": "This is a high-quality product made from premium materials. Perfect for daily use.",
+      "stockStatus": "In Stock",
+      "rating": 4.7,
+      "reviews": [
+        {
+          "username": "JohnDoe",
+          "comment": "Absolutely loved the product!",
+          "rating": 5
+        },
+        {
+          "username": "JaneSmith",
+          "comment": "Good value for money.",
+          "rating": 4
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "name": "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
+      "code": "$1201",
+      "price": 109.95,
+      "img": "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
+      "description": "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve.",
+      "stockStatus": "In Stock",
+      "rating": 4.8,
+      "reviews": [
+        {
+          "username": "AliceM",
+          "comment": "Great for work and school!",
+          "rating": 5
+        },
+        {
+          "username": "BobK",
+          "comment": "Durable but a bit expensive.",
+          "rating": 4
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Mens Casual Premium Slim Fit T-Shirts",
+      "code": "$1202",
+      "price": 22.3,
+      "img": "https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg",
+      "description": "Slim-fitting style, contrast raglan long sleeve, three-button henley placket. Lightweight and soft fabric.",
+      "stockStatus": "Low Stock",
+      "rating": 4.3,
+      "reviews": [
+        {
+          "username": "MikeJ",
+          "comment": "Good fit, comfortable material.",
+          "rating": 4
+        },
+        {
+          "username": "SaraD",
+          "comment": "Color faded after a few washes.",
+          "rating": 3
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Mens Cotton Jacket",
+      "code": "$1203",
+      "price": 55.99,
+      "img": "https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg",
+      "description": "Great outerwear jackets for Spring/Autumn/Winter, suitable for many occasions, such as working, hiking, camping, mountain/rock climbing.",
+      "stockStatus": "In Stock",
+      "rating": 4.6,
+      "reviews": [
+        {
+          "username": "AdamL",
+          "comment": "Stylish and comfortable.",
+          "rating": 5
+        },
+        {
+          "username": "NancyP",
+          "comment": "Good for light weather.",
+          "rating": 4
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Mens Casual Slim Fit",
+      "code": "$1204",
+      "price": 15.99,
+      "img": "https://fakestoreapi.com/img/71YXzeOuslL._AC_UY879_.jpg",
+      "description": "The color could be slightly different between on the screen and in practice.",
+      "stockStatus": "Out of Stock",
+      "rating": 4.1,
+      "reviews": [
+        {
+          "username": "PaulS",
+          "comment": "Nice but wish the color was better.",
+          "rating": 4
+        },
+        {
+          "username": "KimB",
+          "comment": "Fit wasn't perfect, but overall decent.",
+          "rating": 3
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "John Hardy Women's Legends Naga Gold & Silver Dragon Station Chain Bracelet",
+      "code": "$1205",
+      "price": 695,
+      "img": "https://fakestoreapi.com/img/71pWzhdJNwL._AC_UL640_QL65_ML3_.jpg",
+      "description": "From our Legends Collection, the Naga was inspired by the mythical water dragon that protects the ocean's pearl.",
+      "stockStatus": "In Stock",
+      "rating": 4.9,
+      "reviews": [
+        {
+          "username": "CatherineM",
+          "comment": "Elegant and timeless.",
+          "rating": 5
+        },
+        {
+          "username": "EmmaW",
+          "comment": "A bit pricey but worth it.",
+          "rating": 4
+        }
+      ]
+    }
+  ]
+}
