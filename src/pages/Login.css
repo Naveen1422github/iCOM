@@ -1,19 +1,7 @@
-.divsvg1 {
-  z-index: 1;
-  display: flex;
-  justify-content: center;
-position: absolute;
-  align-items: flex-start;
-  width: 250px;
-  height: 100vh;
-  background-image: url('../assets/svg1.svg'); /* Adjust the path if needed */
-  background-size: 100px; /* This makes sure the SVG scales properly */
-  background-repeat: no-repeat;
-  background-position-x: 150px; /* Centers the SVG */
-  background-position-y: 20%; /* Centers the SVG */
-}
+
+
 .divtest {
-  z-index: 0;
+  z-index: 1;
   display: flex;
   justify-content: center;
 position: absolute;
@@ -21,10 +9,10 @@ position: absolute;
   width: 350px;
   height: 100vh;
   background-image: url('../assets/bestdeal.svg'); /* Adjust the path if needed */
-  background-size: 240px; /* This makes sure the SVG scales properly */
+  background-size: 140px; /* This makes sure the SVG scales properly */
   background-repeat: no-repeat;
-  background-position-x: center; /* Centers the SVG */
-  background-position-y: 1%; /* Centers the SVG */
+  background-position-x: 70%; /* Centers the SVG */
+  background-position-y: 5%; /* Centers the SVG */
 }
 
 
@@ -44,10 +32,9 @@ position: absolute;
 
 .logbottom{
   position: absolute;
-  margin-top: 810px;
-  width: 342px;
+  width: 362px;
 }
- 
+
 /* Eye icon for password toggle */
 .password-input ion-icon {
   cursor: pointer;
@@ -63,11 +50,10 @@ position: absolute;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100%;
+    height: 90%;
 
 
 
-    background-color: rgba(255, 255, 255, 0.8); /* Optional: A semi-transparent white background for the form */
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);

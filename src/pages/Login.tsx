@@ -65,6 +65,7 @@ const Login: React.FC = () => {
 
   return (
     <IonPage>
+      
       {/* Animation container */}
       { !isAnimationComplete && (
     <div id="drop-container">
@@ -79,10 +80,10 @@ const Login: React.FC = () => {
       </IonHeader>
 
         <IonContent className="FullPage">
-         
+        <div className="divtest"></div>
+        
           <div className="login-container" >
-            <div className="divtest"></div>
-            <div className="divsvg1"></div>
+          <div className="divsvg1"></div>
             <IonText className="login-title">
               {isSignUp ? "Create a new account" : "Log into your account"}
             </IonText>
@@ -129,6 +130,7 @@ const Login: React.FC = () => {
                 {errorMessage}
               </IonText>
             )}
+          </div>
           <IonToolbar className='logbottom'>
 
             <h3>{isSignUp ? "Already a user?" : "Don't have an account ?"}</h3>
@@ -136,7 +138,6 @@ const Login: React.FC = () => {
             {isSignUp ? "Login" : "Register"}
           </IonButton>
         </IonToolbar>
-          </div>
         </IonContent>
     </IonPage>
   );
