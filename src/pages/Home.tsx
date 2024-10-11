@@ -32,6 +32,7 @@ import Nav from './Nav';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import { Capacitor } from '@capacitor/core';
 import { useCart } from '../contexts/CartContext'; // Import useCart
+import backgroundSVG from '../assets/login.svg'; // Adjust the path as neede
 
 interface Product {
   id: number;
@@ -355,7 +356,13 @@ setTimeout(() => {
           {isAuthenticated && (
             <div className="profile-container">
               <IonIcon
-                icon={personCircleOutline}
+                // icon={personCircleOutline}
+                style={{
+                  backgroundImage: `url(${backgroundSVG})`,
+                  backgroundSize: '',
+                  backgroundRepeat: 'no-repeat',
+                  backgroundPosition: 'center center',
+                }}
                 size="large"
                 onClick={navigateToProfile}
               />

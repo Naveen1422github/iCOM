@@ -14,6 +14,7 @@ import { CartProvider } from './contexts/CartContext'; // Import CartProvider
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
 
+
 /* Basic CSS for apps built with Ionic */
 import '@ionic/react/css/normalize.css';
 import '@ionic/react/css/structure.css';
@@ -32,6 +33,7 @@ import '@ionic/react/css/palettes/dark.system.css';
 
 /* Theme variables */
 import './theme/variables.css';
+import OrderDetails from './pages/OrderDetails';
 
 setupIonicReact();
 
@@ -49,6 +51,7 @@ const App: React.FC = () => (
           <Route exact path="/verify" component={Verify} />
           <Route path="/productdetails" component={ProductDetails} exact />
           <Route exact path="/" render={() => <Redirect to="/login" />} />
+          <Route path="/orderDetails/:id" component={OrderDetails} exact />
         </IonRouterOutlet>
       </IonReactRouter>
     </CartProvider>

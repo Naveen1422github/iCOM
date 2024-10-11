@@ -1,9 +1,33 @@
-.FullPage{
+.divsvg1 {
+  z-index: 1;
   display: flex;
-align-items: center;
-  --background: #b3e4c9; 
-  /* Your custom background color */
+  justify-content: center;
+position: absolute;
+  align-items: flex-start;
+  width: 250px;
+  height: 100vh;
+  background-image: url('../assets/svg1.svg'); /* Adjust the path if needed */
+  background-size: 100px; /* This makes sure the SVG scales properly */
+  background-repeat: no-repeat;
+  background-position-x: 150px; /* Centers the SVG */
+  background-position-y: 20%; /* Centers the SVG */
 }
+.divtest {
+  z-index: 0;
+  display: flex;
+  justify-content: center;
+position: absolute;
+  align-items: flex-start;
+  width: 350px;
+  height: 100vh;
+  background-image: url('../assets/bestdeal.svg'); /* Adjust the path if needed */
+  background-size: 240px; /* This makes sure the SVG scales properly */
+  background-repeat: no-repeat;
+  background-position-x: center; /* Centers the SVG */
+  background-position-y: 1%; /* Centers the SVG */
+}
+
+
 .password-input {
   width: 100%;
   max-width: 320px;
@@ -17,10 +41,7 @@ align-items: center;
   padding-right: 10px; /* Add padding for the icon */
   box-shadow: inset 0 1px 15px rgba(1, 4, 0, 0.1);
 }
-.pass{
-   
-  opacity: 0.7;
-}
+
 .logbottom{
   position: absolute;
   margin-top: 810px;
@@ -43,15 +64,24 @@ align-items: center;
     justify-content: center;
     align-items: center;
     height: 100%;
+
+
+
+    background-color: rgba(255, 255, 255, 0.8); /* Optional: A semi-transparent white background for the form */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
   
   .login-title {
     margin-left: 10px;
-    font-size: 3.5rem;
+    font-size: 1.5rem;
     font-weight: 500;
     text-align: left;
     margin-bottom: 2rem;
     color: #000;
+    z-index: 2;
+    
   }
 
  

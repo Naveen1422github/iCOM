@@ -31,7 +31,11 @@ interface OrderItem {
   name: string;
   quantity: number;
   price: number;
+  img: string; // Add image URL field
+  selectedSize: string; // Add selectedSize field
 }
+
+
 
 interface Order {
   id: string;
@@ -99,7 +103,7 @@ const userProfile: React.FC = () => {
           id: doc.id,
           userId: data.userId,
           items: data.items || [],
-          totalAmount: data.totalAmount || 0,
+          totalAmount: data.total || 0,
           orderDate: orderDate,
           status: data.status || 'Unknown',
         });
@@ -132,13 +136,13 @@ const userProfile: React.FC = () => {
                 <IonCardSubtitle>{user.email}</IonCardSubtitle>
               </IonCardHeader>
 
-              <IonCardContent>
+              <IonCardContent className='uptop'>
                 <IonText className="user-info">
                   <p><strong>Username: </strong>{user.displayName || 'N/A'}</p>
                   <p><strong>Email: </strong>{user.email || 'N/A'}</p>
                 </IonText>
 
-                <IonButton expand="block" color="danger" onClick={handleLogout}>
+                <IonButton  shape='round' fill='outline'  onClick={handleLogout}>
                   <IonIcon slot="start" icon={logOutOutline} />
                   Logout
                 </IonButton>
@@ -174,12 +178,18 @@ const userProfile: React.FC = () => {
             <IonCardContent>
               <IonList>
                 {order.items.map((item, index) => (
-                  <IonItem key={index} className="item-row">
-                    <IonLabel>
-                      <h3 className="item-name">{item.name}</h3>
-                      <p className="item-details">Quantity: {item.quantity} | Price: ${item.price.toFixed(2)}</p>
-                    </IonLabel>
-                  </IonItem>
+                 <IonItem key={index} className="item-row">
+                 <IonLabel>
+                   <h3 className="item-name">{item.name}</h3>
+                   <p className="item-details">
+                     Quantity: {item.quantity} | Price: ${item.price.toFixed(2)} | Size: {item.selectedSize} | Total: ${item.price*item.quantity}
+                   </p>
+                 </IonLabel>
+                 {1==1 && (
+                   <img src={item.img} alt={"xy"} className="item-image" />
+                 )}
+               </IonItem>
+               
                 ))}
               </IonList>
               <div className="order-total">

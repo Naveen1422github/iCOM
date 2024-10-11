@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { eyeOff, eye } from 'ionicons/icons';  // Import icons
 import './Login.css';
 import { loginUser, registerUser } from '../firebaseConfig';  // Import your Firebase config
-
+import backgroundSVG from '../assets/bestdeal.svg'; // Adjust the path as neede
 const Login: React.FC = () => {
   const [isSignUp, setIsSignUp] = useState<boolean>(false);
   const [email, setEmail] = useState<string>("");
@@ -77,7 +77,10 @@ const Login: React.FC = () => {
       </IonHeader>
 
         <IonContent className="FullPage">
-          <div className="login-container">
+         
+          <div className="login-container" >
+            <div className="divtest"></div>
+            <div className="divsvg1"></div>
             <IonText className="login-title">
               {isSignUp ? "Create a new account" : "Log into your account"}
             </IonText>
