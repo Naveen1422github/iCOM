@@ -91,6 +91,7 @@ position: absolute;
     font-size: 1rem;
     padding: 12px;
     border-radius: 50%;
+    z-index: 999;
   }
   
  /* Drop container - black screen during animation */
