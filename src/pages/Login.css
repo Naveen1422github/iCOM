@@ -29,7 +29,12 @@ position: absolute;
   padding-right: 10px; /* Add padding for the icon */
   box-shadow: inset 0 1px 15px rgba(1, 4, 0, 0.1);
 }
+.inputs {
+  display: flex;
+  flex-direction: column;  justify-content: space-around;
 
+  height: 200px;
+}
 .logbottom{
   position: absolute;
   width: 362px;

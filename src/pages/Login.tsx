@@ -90,30 +90,26 @@ const Login: React.FC = () => {
 
             {/* Common Email Input */}
             {/* Email Input */}
-<IonItem lines="none" className="password-input">
-<IonInput
-    type="email"
-    placeholder="Enter your Email"
+<div className="inputs">
+
+<IonInput label="Enter your Email"  
     value={email}
-    onIonChange={(e) => setEmail(e.detail.value!)}
-    className="pass"
-  />
-</IonItem>
+    onIonChange={(e) => setEmail(e.detail.value!)} type='email' shape='round' labelPlacement="floating" fill="outline" placeholder="Email"><IonIcon
+    slot="end"
+    /></IonInput>
  
-{/* Password Input with Eye Icon for Toggle */}
-<IonItem lines="none" className="password-input">
-<IonInput
-    type={showPassword ? "text" : "password"}
-    placeholder="Enter Password"
+
+
+
+<IonInput label="Enter Password"  
     value={password}
-    onIonChange={(e) => setPassword(e.detail.value!)}
-  />
-<IonIcon
+    onIonChange={(e) => setPassword(e.detail.value!)} type={showPassword ? "text" : "password"} shape='round' labelPlacement="floating" fill="outline" placeholder="Password"><IonIcon
     slot="end"
     icon={showPassword ? eyeOff : eye}
     onClick={() => setShowPassword(!showPassword)}
-  />
-</IonItem>
+    /></IonInput>
+    </div>
+
             {/* Conditional rendering for login or sign-up */}
             {isSignUp ? (
               <IonButton shape="round" expand="block" onClick={signUp} className="otp-button">
