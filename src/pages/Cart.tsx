@@ -188,10 +188,10 @@ const Cart: React.FC = () => {
                 />
               </div>
               {showOrderSummary && (
-                <table className="bill-table">
+                <table className="bill-table" color='light'>
                   <thead>
                     <tr>
-                      <th>Product</th>
+                      <th color='light'>Product</th>
                       <th>Quantity</th>
                       <th>Price</th>
                       <th>Total</th>
