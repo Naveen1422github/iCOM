@@ -4,17 +4,40 @@
   z-index: 1;
   display: flex;
   justify-content: center;
-position: absolute;
+
   align-items: flex-start;
   width: 350px;
-  height: 100vh;
+  height: 15vh;
   background-image: url('../assets/bestdeal.svg'); /* Adjust the path if needed */
   background-size: 140px; /* This makes sure the SVG scales properly */
   background-repeat: no-repeat;
-  background-position-x: 70%; /* Centers the SVG */
-  background-position-y: 5%; /* Centers the SVG */
+  background-position-x: 50%; 
+  background-position-y: 15%; 
+}
+.container {
+  display: flex;
+  justify-content: center; /* Centers horizontally */
+  align-items: center;    /* Centers vertically */
+  height: 800px; 
+  width: 540px;
+  background-color: rgb(241, 235, 235);
+
+           /* Full viewport height */
 }
 
+
+.box {
+  width: 817px;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 540px;
+  height: 100vh;
+  background-color: rgb(241, 235, 235);
+  
+
+}
 
 .password-input {
   width: 100%;
@@ -36,8 +59,27 @@ position: absolute;
   height: 200px;
 }
 .logbottom{
-  position: absolute;
-  width: 362px;
+  position: relative;
+  display: flex;
+  justify-content: space-around;
+  width: 425px;
+  color: #000;
+}
+.logbottom h3{
+  font-weight: 600;
+
+}
+/* Target floating labels in IonInput */
+ion-input .label-floating {
+  color: #015a00 !important; /* Set label color to dark */
+}
+
+ion-input {
+  --color: #000000 !important; /* Text color */
+}
+
+ion-input {
+  --highlight-color-focused: #015a00 !important; /* Change the color of the highlight when the input is focused */
 }
 
 /* Eye icon for password toggle */
@@ -50,8 +92,8 @@ position: absolute;
 
 
 .login-container {
-  width: 200px;
-    display: flex;
+background: rgb(236,249,232);
+background: linear-gradient(90deg, rgba(236,249,232,1) 0%, rgba(202,227,255,0.10755148741418763) 100%);    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;

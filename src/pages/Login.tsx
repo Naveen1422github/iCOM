@@ -79,11 +79,13 @@ const Login: React.FC = () => {
         
       </IonHeader>
 
-        <IonContent className="FullPage">
-        <div className="divtest"></div>
+        <IonContent color="dark">
+        <div className="container">
+  <div className="box">
+        
         
           <div className="login-container" >
-          <div className="divsvg1"></div>
+          <div className="divtest"></div>
             <IonText className="login-title">
               {isSignUp ? "Create a new account" : "Log into your account"}
             </IonText>
@@ -92,7 +94,7 @@ const Login: React.FC = () => {
             {/* Email Input */}
 <div className="inputs">
 
-<IonInput label="Enter your Email"  
+<IonInput  label="Enter your Email"  
     value={email}
     onIonChange={(e) => setEmail(e.detail.value!)} type='email' shape='round' labelPlacement="floating" fill="outline" placeholder="Email"><IonIcon
     slot="end"
@@ -126,16 +128,24 @@ const Login: React.FC = () => {
                 {errorMessage}
               </IonText>
             )}
+            
           </div>
-          <IonToolbar className='logbottom'>
+         
+        </div>
+        <div className='logbottom'>
 
-            <h3>{isSignUp ? "Already a user?" : "Don't have an account ?"}</h3>
-          <IonButton slot="end" onClick={toggleSignUp} fill="outline">
-            {isSignUp ? "Login" : "Register"}
-          </IonButton>
-        </IonToolbar>
+<h3>{isSignUp ? "Already a user?" : "Don't have an account ?"}</h3>
+<IonButton slot="end" onClick={toggleSignUp} fill="outline">
+{isSignUp ? "Login" : "Register"}
+</IonButton>
+</div>
+        
+</div>
+ 
         </IonContent>
+        
     </IonPage>
+    
   );
 };
 
