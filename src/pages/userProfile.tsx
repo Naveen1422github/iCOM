@@ -182,7 +182,7 @@ const userProfile: React.FC = () => {
                  <IonLabel>
                    <h3 className="item-name">{item.name}</h3>
                    <p className="item-details">
-                     Quantity: {item.quantity} | Price: ${item.price.toFixed(2)} | Size: {item.selectedSize} | Total: ${item.price*item.quantity}
+                     Quantity: {item.quantity} | Price: ₹{item.price.toFixed(2)} | Size: {item.selectedSize} | Total: ₹{item.price*item.quantity}
                    </p>
                  </IonLabel>
                  {1==1 && (
@@ -194,7 +194,7 @@ const userProfile: React.FC = () => {
               </IonList>
               <div className="order-total">
                 <IonText>
-                  <strong>Total Amount: </strong>${order.totalAmount.toFixed(2)}
+                  <strong>Total Amount: </strong>₹{order.totalAmount.toFixed(2)}
                 </IonText>
               </div>
             </IonCardContent>
