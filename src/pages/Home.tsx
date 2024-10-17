@@ -55,6 +55,33 @@ const Home: React.FC = () => {
   const history = useHistory();
   const [showUnauthenticatedMessage, setShowUnauthenticatedMessage] = useState<boolean>(false); // New state for the message
 
+
+
+  const categoriesRef = useRef<HTMLDivElement[]>([]); // Array of refs for each category
+  const [highlightedIndex, setHighlightedIndex] = useState<number | null>(null); // Keep track of highlighted index
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const index = categoriesRef.current.indexOf(entry.target as HTMLDivElement);
+            setHighlightedIndex(index);
+          }
+        });
+      },
+      { threshold: 0.6 } // Trigger when 60% of the element is in view
+    );
+
+    categoriesRef.current.forEach((category) => {
+      if (category) observer.observe(category);
+    });
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
   useEffect(() => {
     // Set up the authentication state observer
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -210,6 +237,10 @@ useEffect(() => {
     } else {
       alert('Webcam not supported in this browser.');
     }
+  };
+
+  const handleCategoryClick = (category: string) => {
+    history.push(`/categories/${category}`);
   };
 
   const uploadFile = () => {
@@ -744,6 +775,33 @@ useEffect(() => {
 
                 </IonRow>
                 
+
+                <div className="categories-container">
+        <div className="category" onClick={() => handleCategoryClick('men')}>
+          <img src="https://images.bewakoof.com/t1080/men-s-green-move-on-graphic-printed-t-shirt-587160-1717061149-1.jpg" alt="Men" className="category-image" />
+          <div className="category-overlay">
+            <h2>MEN</h2>
+          </div>
+        </div>
+        <div className="category" onClick={() => handleCategoryClick('women')}>
+          <img src="https://images.bewakoof.com/t1080/women-s-black-friends-feelings-t-j-graphic-printed-oversized-t-shirt-591334-1701446976-1.jpg" alt="Women" className="category-image" />
+          <div className="category-overlay">
+            <h2>WOMEN</h2>
+          </div>
+        </div>
+        <div className="category" onClick={() => handleCategoryClick('kids')}>
+          <img src="//cdn.fcglcdn.com/brainbees/images/products/583x720/11083314a.webp" alt="Kids" className="category-image" />
+          <div className="category-overlay">
+            <h2>KIDS</h2>
+          </div>
+        </div>
+      </div>
+    
+     
+ 
+
+
+      
                 <div className="midll">
 
                   <IonRow >

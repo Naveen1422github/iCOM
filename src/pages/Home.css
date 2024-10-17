@@ -76,12 +76,13 @@ white-space: nowrap;
   aspect-ratio: 1;
   display: grid;
   position: fixed;
-  margin-left: 177px;
-  margin-top: 250px;
-  border: 4px solid #0000;
+  margin-top: 50%;
+  margin-left: 50%;
+  transform: translate(-50%, -50%);
+  border: 4px solid transparent; /* Fixed this */
   border-radius: 50%;
   border-right-color: #25b09b;
-  animation: l15 1s infinite linear;
+  animation: l15 0.5s infinite linear;
 }
 .loader::before,
 .loader::after {    
@@ -118,6 +119,13 @@ white-space: nowrap;
 }
 
 .cardHome.centered {
+  transform: scale(1.07); /* Enlarge the centered card */
+  opacity: 1; /* Full opacity for the centered card */
+  z-index: 10; /* Bring the centered card to the front */
+  border: 1px solid #b6b6b6;
+
+}
+.cardHome:hover {
   transform: scale(1.1); /* Enlarge the centered card */
   opacity: 1; /* Full opacity for the centered card */
   z-index: 10; /* Bring the centered card to the front */
@@ -281,3 +289,62 @@ ion-fab-button {
   margin-bottom: 10px
   ;
 }
+.categories-container {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  padding: 20px;
+  height: 100%;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+  justify-content: center;
+}
+
+.category {
+  position: relative;
+  min-width: 200px; /* Adjust the width as needed */
+  height: 300px; /* Adjust the height as needed */
+  scroll-snap-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 10px;
+}
+
+.category-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+
+.category-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(128, 128, 128, 0.648); /* Grey background */
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  border-radius: 10px;
+}
+.category-overlay:hover {
+ 
+  background-color: rgba(128, 128, 128, 0.404); /* Grey background */
+  
+}
+
+/* Highlight the section on hover */
+.category:hover {
+  transform: scale(1.1);
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+h2 {
+  margin: 0;
+}
+

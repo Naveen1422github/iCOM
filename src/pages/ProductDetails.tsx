@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react';
 import './ProductDetails.css';
 import { useLocation, useHistory } from 'react-router-dom';
 import Nav from './Nav';
-import { IonContent } from '@ionic/react';
-import { useCart } from '../contexts/CartContext'; // Import useCart
+import { IonCard, IonCardContent, IonContent, IonIcon, IonLabel, IonProgressBar } from '@ionic/react';
+import { useCart } from '../contexts/CartContext';
+import { bagHandle } from 'ionicons/icons';
 
 interface Review {
   username: string;
@@ -28,8 +29,9 @@ const ProductDetails: React.FC = () => {
   const history = useHistory();
   const [product, setProduct] = useState<Product | null>(null);
   const [error, setError] = useState<string | null>(null);
-  const [isModalOpen, setModalOpen] = useState(false); // State for modal visibility
-  const { addToCart } = useCart(); // Use cart context
+  const [isModalOpen, setModalOpen] = useState(false);
+  const [isReviewMode, setReviewMode] = useState(true); // State for toggling review section
+  const { addToCart } = useCart();
 
   useEffect(() => {
     if (location.state && location.state.product) {
@@ -101,20 +103,114 @@ const ProductDetails: React.FC = () => {
           </div>
         </div>
 
-        <button className="add-to-bag" onClick={() => addToCart(product)}>ADD TO BAG</button>
-      </div>
-      
-      {/* Modal for displaying the image */}
-      {isModalOpen && (
-        <div className="modal" onClick={closeModal}>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <span className="close-button" onClick={closeModal}>&times;</span>
-            <img src={product.img} alt={product.name} />
+        <button className="add-to-bag" onClick={() => addToCart(product)}><IonIcon slot="start" icon={bagHandle}></IonIcon>ADD TO BAG</button>
+
+        <IonCard className="review-card">
+      <IonCardContent>
+        <IonLabel className="reviews-header">Product Reviews</IonLabel>
+        <div className="rating-summary">
+          <h2>4.5</h2>
+          <span>8M+ ratings</span>
+          <IonLabel className="recommendation">90% of verified buyers recommend this brand</IonLabel>
+        </div>
+
+        <div className="progress-bars">
+          <div className="progress-item">
+            <span>5 ★</span>
+            <IonProgressBar value={0.75} />
+            <span>(6M+)</span>
+          </div>
+          <div className="progress-item">
+            <span>4 ★</span>
+            <IonProgressBar value={0.25} />
+            <span>(2M+)</span>
+          </div>
+          <div className="progress-item">
+            <span>3 ★</span>
+            <IonProgressBar value={0.1} />
+            <span>(715k+)</span>
+          </div>
+          <div className="progress-item">
+            <span>2 ★</span>
+            <IonProgressBar value={0.05} />
+            <span>(35k+)</span>
+          </div>
+          <div className="progress-item">
+            <span>1 ★</span>
+            <IonProgressBar value={0.03} />
+            <span>(64k+)</span>
           </div>
         </div>
-      )}
-      
-      <Nav />
+      </IonCardContent>
+    </IonCard>
+  ;
+
+        {/* Rating Section */}
+        {/* <div className="rating-section">
+          <div className="review-toggle">
+            <button 
+              className={`toggle-button ${isReviewMode ? 'active' : ''}`} 
+              onClick={() => setReviewMode(true)}
+            >
+              Product Reviews
+            </button>
+            <button 
+              className={`toggle-button ${!isReviewMode ? 'active' : ''}`} 
+              onClick={() => setReviewMode(false)}
+            >
+              Write Review
+            </button>
+          </div>
+
+          {isReviewMode ? (
+            <div className="product-review">
+              <h3>{product.rating} ({product.reviews.length} ratings)</h3>
+              {[5, 4, 3, 2, 1].map((star) => (
+                <div key={star} className="star-rating">
+                  <div className="star-label">{star} ★</div>
+                  <div className="star-bar">
+                    <div 
+                      className="star-filled" 
+                      style={{ width: `${(star === 5 ? 308 : star === 4 ? 138 : star === 3 ? 60 : star === 2 ? 1 : 6) / product.reviews.length * 100}%` }}
+                    />
+                  </div>
+                  <span className="star-count">{(star === 5 ? 308 : star === 4 ? 138 : star === 3 ? 60 : star === 2 ? 1 : 6)} ratings</span>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="write-review">
+              <h3>Write a Review</h3>
+              <textarea placeholder="Write your review here..." />
+              <div className="rating-input">
+                <label>Rating:</label>
+                <select>
+                  <option value="1">1 Star</option>
+                  <option value="2">2 Stars</option>
+                  <option value="3">3 Stars</option>
+                  <option value="4">4 Stars</option>
+                  <option value="5">5 Stars</option>
+                </select>
+              </div>
+              <button className="submit-review">Submit Review</button>
+            </div>
+          )}
+        </div> */}
+
+        {/* Modal for displaying the image */}
+        {isModalOpen && (
+          <div className="modal" onClick={closeModal}>
+            <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+              <span className="close-button" onClick={closeModal}>&times;</span>
+              <img src={product.img} alt={product.name} />
+            </div>
+          </div>
+        )}
+
+        <Nav />
+
+        
+      </div>
     </IonContent>
   );
 };
