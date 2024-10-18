@@ -10,6 +10,7 @@ import userProfile from './pages/userProfile';
 import Verify from './pages/Verify';
 import ProductDetails from './pages/ProductDetails';
 import { CartProvider } from './contexts/CartContext'; // Import CartProvider
+import ProductCategoryPage from './pages/ProductCategoryPage';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -49,9 +50,10 @@ const App: React.FC = () => (
           <Route path="/cart" component={Cart} exact />
           <Route path="/userProfile" component={userProfile} exact />
           <Route exact path="/verify" component={Verify} />
-          <Route path="/productdetails" component={ProductDetails} exact />
+          <Route path="/ProductDetails" component={ProductDetails} exact />
           <Route exact path="/" render={() => <Redirect to="/login" />} />
           <Route path="/orderDetails/:id" component={OrderDetails} exact />
+          <Route path="/category/:category" component={ProductCategoryPage} />
         </IonRouterOutlet>
       </IonReactRouter>
     </CartProvider>
