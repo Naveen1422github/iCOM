@@ -663,7 +663,7 @@ useEffect(() => {
       setTimeout(() => {
 
         setIsLoading(false);
-      }, 900);
+      }, 1900);
     }
   };
 
