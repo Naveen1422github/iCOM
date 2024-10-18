@@ -38,7 +38,10 @@ white-space: nowrap;
     padding: 8px;
 
   }
- 
+  .categories-container{
+
+    margin-left: none;
+  }
   .cardHome {
 
     width: 200px;
@@ -320,7 +323,10 @@ ion-fab-button {
   scroll-snap-type: x mandatory;
   justify-content: center;
 }
+.categories-container{
 
+  padding-left: 190px;
+}
 .category {
   position: relative;
   min-width: 200px; /* Adjust the width as needed */

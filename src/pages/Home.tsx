@@ -801,7 +801,7 @@ useEffect(() => {
           </div>
         </div>
         <div className="category" onClick={() => handleCategoryClick('kids')}>
-          <img src="//cdn.fcglcdn.com/brainbees/images/products/583x720/11083314a.webp" alt="Kids" className="category-image" />
+          <img src="https://hangout-hub.com/cdn/shop/files/sibling-t-shirt-kids-brother-sister-yellow-big-sister-little-brother.jpg?v=1692866973&width=1080" alt="Kids" className="category-image" />
           <div className="category-overlay">
             <h2>KIDS</h2>
           </div>
