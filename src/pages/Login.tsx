@@ -86,7 +86,7 @@ const Login: React.FC = () => {
         
           <div className="login-container" >
           <div className="divtest"></div>
-            <IonText className="login-title">
+            <IonText className="login-title monofett-regular">
               {isSignUp ? "Create a new account" : "Log into your account"}
             </IonText>
 
@@ -114,9 +114,9 @@ const Login: React.FC = () => {
 
             {/* Conditional rendering for login or sign-up */}
             {isSignUp ? (
-              <IonButton shape="round" expand="block" onClick={signUp} className="otp-button">
+              <IonButton shape="round" color='medium' expand="block" onClick={signUp} className="otp-button">
                 Sign Up
-              </IonButton>
+              </IonButton>  
             ) : (
               <IonButton shape="round" expand="block" onClick={login} className="otp-button">
                 Login 
@@ -130,15 +130,15 @@ const Login: React.FC = () => {
             )}
             
           </div>
-         
-        </div>
-        <div className='logbottom'>
-
+          <div className='logbottom'>
 <h3>{isSignUp ? "Already a user?" : "Don't have an account ?"}</h3>
-<IonButton slot="end" onClick={toggleSignUp} fill="outline">
+<IonButton className='logbottom-btn'  color='light' slot="end" onClick={toggleSignUp} fill="outline">
 {isSignUp ? "Login" : "Register"}
 </IonButton>
 </div>
+        
+        </div>
+       
         
 </div>
  

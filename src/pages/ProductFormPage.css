@@ -1,0 +1,77 @@
+/* Basic page styling */
+.product-form-content {
+    padding: 20px;
+    background-color: #f5f5f5;
+    width: 100%;
+  }
+  
+  /* Style for form items */
+  .items {
+    margin-bottom: 15px;
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 10px;
+  }
+  
+  /* Group label and input on separate lines */
+  .input-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Label styling */
+  .input-group ion-label {
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+  
+  /* Input fields styling */
+  .input-group ion-input {
+    padding: 8px;
+    font-size: 16px;
+    border: 2px solid #ccc; /* 2px border for input */
+    border-radius: 5px;
+    background-color: #fff;
+    margin-bottom: 10px;
+  }
+  
+  /* Focus effect on input fields */
+  .input-group ion-input:focus {
+    box-shadow: 0 0 6px rgba(100, 150, 255, 0.5);
+    border-color: #3880ff; /* Change border color on focus */
+  }
+  
+  /* Button styling */
+  ion-button {
+    width: 100%;
+    margin: 20px 0;
+    --background: #3880ff;
+    --border-radius: 5px;
+  }
+  
+  /* Add Review Button */
+  ion-button:nth-child(2) {
+    --background: #28a745;
+  }
+  
+  /* Message styling */
+  ion-text {
+    display: block;
+    margin-top: 15px;
+    text-align: center;
+    font-weight: bold;
+  }
+  
+  /* Review section styling */
+  .items div {
+    margin-top: 20px;
+  }
+  
+  /* Responsive layout */
+  @media (min-width: 768px) {
+    .product-form-content {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+  }
+  

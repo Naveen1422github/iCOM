@@ -35,6 +35,7 @@ import '@ionic/react/css/palettes/dark.system.css';
 /* Theme variables */
 import './theme/variables.css';
 import OrderDetails from './pages/OrderDetails';
+import ProductFormPage from './pages/ProductFormPage';
 
 setupIonicReact();
 
@@ -54,6 +55,7 @@ const App: React.FC = () => (
           <Route exact path="/" render={() => <Redirect to="/login" />} />
           <Route path="/orderDetails/:id" component={OrderDetails} exact />
           <Route path="/category/:category" component={ProductCategoryPage} />
+          <Route path="/ProductFormPage" component={ProductFormPage} />
         </IonRouterOutlet>
       </IonReactRouter>
     </CartProvider>
