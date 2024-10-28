@@ -11,6 +11,8 @@ import Verify from './pages/Verify';
 import ProductDetails from './pages/ProductDetails';
 import { CartProvider } from './contexts/CartContext'; // Import CartProvider
 import ProductCategoryPage from './pages/ProductCategoryPage';
+import admin from './pages/admin';
+import Coupon from './pages/coupon';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -36,6 +38,8 @@ import '@ionic/react/css/palettes/dark.system.css';
 import './theme/variables.css';
 import OrderDetails from './pages/OrderDetails';
 import ProductFormPage from './pages/ProductFormPage';
+import adminmenu from './pages/adminmenu';
+import AdminMaster from './pages/adminMaster';
 
 setupIonicReact();
 
@@ -56,6 +60,10 @@ const App: React.FC = () => (
           <Route path="/orderDetails/:id" component={OrderDetails} exact />
           <Route path="/category/:category" component={ProductCategoryPage} />
           <Route path="/ProductFormPage" component={ProductFormPage} />
+          <Route path="/admin" component={admin} />
+          <Route path="/adminmenu" component={adminmenu} />
+          <Route path="/coupon" component={Coupon} />
+          <Route path="/AdminMaster" component={AdminMaster} />
         </IonRouterOutlet>
       </IonReactRouter>
     </CartProvider>

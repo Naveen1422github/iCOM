@@ -1,0 +1,75 @@
+/* Basic styling for the dashboard layout */
+ion-page {
+    --ion-background-color: #f4f5f8;
+  }
+  .menu-backdrop {
+  display: none !important;
+}
+  ion-toolbar {
+    --background: #ffffff;
+  }
+  
+  .welcome-card {
+    background-color: #eef2f7;
+    border-radius: 15px;
+    color: #333;
+  }
+  
+  ion-card {
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  ion-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  ion-card-title {
+    font-size: 1.2rem;
+    color: #444;
+  }
+  
+  ion-card-subtitle {
+    font-size: 0.9rem;
+    color: #777;
+  }
+  
+  ion-card-content {
+    font-size: 0.9rem;
+    color: #666;
+  }
+  
+  p {
+    margin: 0;
+    padding: 0;
+  }
+  
+  ion-row {
+    margin-bottom: 20px;
+  }
+  
+  ion-col {
+    margin-bottom: 10px;
+  }
+  
+  /* Sidebar styling */
+  .sidebar {
+    background-color: #3b3b3b;
+    color: white;
+    height: 100%;
+    padding: 20px;
+  }
+  
+  .sidebar ion-title {
+    color: white;
+    font-size: 1.5rem;
+    padding: 10px 0;
+  }
+  
+
+  
+  /* Add any additional styles for responsiveness and customization */
+  

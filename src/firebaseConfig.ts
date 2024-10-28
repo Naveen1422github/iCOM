@@ -7,7 +7,7 @@ import {
   applyActionCode, 
   onAuthStateChanged 
 } from 'firebase/auth';
-import { getFirestore, collection, addDoc, Timestamp } from 'firebase/firestore'; // Import Firestore functions
+import { getFirestore, collection, addDoc, Timestamp, getDocs, query, where } from 'firebase/firestore'; // Import Firestore functions
 import { getStorage } from 'firebase/storage';
 
 // Your Firebase configuration object
@@ -56,6 +56,45 @@ export async function loginUser(email: string, password: string): Promise<boolea
       console.error('Login Failed:', error.message);
     }
     return false;
+  }
+}
+
+export async function createCoupon(code: string, discount: number, expirationDate: Date): Promise<string | null> {
+  try {
+    const docRef = await addDoc(collection(db, 'coupons'), {
+      code,
+      discount,
+      expirationDate: Timestamp.fromDate(expirationDate),
+      createdAt: Timestamp.now(),
+    });
+    console.log('Coupon created with ID:', docRef.id);
+    return docRef.id;
+  } catch (error) {
+    console.error('Error creating coupon:', error);
+    return null;
+  }
+}
+
+/**
+ * Validate a coupon code for discounts.
+ * @param code - The coupon code to validate.
+ * @returns A promise that resolves to the coupon data if valid, otherwise null.
+ */
+export async function validateCoupon(code: string): Promise<any | null> {
+  const q = query(collection(db, 'coupons'), where('code', '==', code));
+  const querySnapshot = await getDocs(q);
+  if (!querySnapshot.empty) {
+    const coupon = querySnapshot.docs[0].data();
+    if (coupon.expirationDate.toDate() > new Date()) {
+      console.log('Coupon is valid:', coupon);
+      return coupon;
+    } else {
+      console.log('Coupon has expired');
+      return null;
+    }
+  } else {
+    console.log('Invalid coupon code');
+    return null;
   }
 }
 

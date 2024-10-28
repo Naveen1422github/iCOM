@@ -8,7 +8,6 @@ import {
   IonButton,
   IonIcon,
   IonCard,
-  IonCardHeader,
   IonCardContent,
   IonItem,
   IonLabel,
@@ -16,12 +15,13 @@ import {
   IonThumbnail,
   IonLoading,
   IonToast,
+  IonInput,
 } from '@ionic/react';
 import { homeOutline, trashOutline, chevronDown, chevronUp } from 'ionicons/icons';
 import './Cart.css';
 import { useHistory } from 'react-router-dom';
 import { useCart } from '../contexts/CartContext';
-import { db, auth } from '../firebaseConfig'; // Import db and auth
+import { db, auth, validateCoupon } from '../firebaseConfig'; // Import validateCoupon
 import { collection, addDoc } from 'firebase/firestore';
 import { Order } from '../types/Order'; // Import Order types
 
@@ -30,8 +30,10 @@ const Cart: React.FC = () => {
   const { cartItems, removeFromCart, updateCartItem, clearCart } = useCart();
   
   const [loading, setLoading] = useState(false);
-  const [toast, setToast] = useState<{show: boolean, message: string, color?: string}>({ show: false, message: '' });
-  const [showOrderSummary, setShowOrderSummary] = useState(false); // New state for toggling order summary
+  const [toast, setToast] = useState<{ show: boolean; message: string; color?: string }>({ show: false, message: '' });
+  const [showOrderSummary, setShowOrderSummary] = useState(false); // State for toggling order summary
+  const [couponCode, setCouponCode] = useState<string>(''); // State for coupon code
+  const [discount, setDiscount] = useState<number>(0); // State for discount amount
 
   // Navigate back to home page
   const goToHomePage = () => {
@@ -55,10 +57,22 @@ const Cart: React.FC = () => {
 
   // Calculate total price
   const calculateTotal = () => {
-    return cartItems.reduce((total, item) => {
+    const total = cartItems.reduce((acc, item) => {
       const price = item.price * (item.quantity || 1);
-      return total + price;
+      return acc + price;
     }, 0);
+    return total - discount; // Apply discount
+  };
+
+  // Handle coupon code submission
+  const handleApplyCoupon = async () => {
+    const coupon = await validateCoupon(couponCode);
+    if (coupon) {
+      setDiscount(coupon.discount); // Set discount if coupon is valid
+      setToast({ show: true, message: `Coupon applied! Discount: ₹${coupon.discount}`, color: 'success' });
+    } else {
+      setToast({ show: true, message: 'Invalid or expired coupon code.', color: 'danger' });
+    }
   };
 
   // Handle Place Order
@@ -89,7 +103,6 @@ const Cart: React.FC = () => {
       })),
       total: calculateTotal(),
       status: 'Pending',
-      // createdAt: new Date(), // Assuming you want to store the creation date
     };
 
     try {
@@ -115,10 +128,7 @@ const Cart: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent>
-        <IonLoading
-          isOpen={loading}
-          message={'Placing your order...'}
-        />
+        <IonLoading isOpen={loading} message={'Placing your order...'} />
         <IonToast
           isOpen={toast.show}
           onDidDismiss={() => setToast({ ...toast, show: false })}
@@ -143,7 +153,7 @@ const Cart: React.FC = () => {
                         <h4>Quantity: {item.quantity || 1}</h4>
                         <h5>Selected Size: {item.selectedSize || 'None'}</h5>
                       </IonLabel>
-                      <IonButton onClick={() => removeItem(item.id)} className='delete' color="danger">
+                      <IonButton onClick={() => removeItem(item.id)} className="delete" color="danger">
                         <IonIcon icon={trashOutline} />
                       </IonButton>
                     </IonItem>
@@ -163,7 +173,7 @@ const Cart: React.FC = () => {
 
                     {/* Quantity options */}
                     <div className="cart-item-quantities">
-                      {[100, 1000, 10000].map((quantity) => (
+                      {[1, 2, 3].map((quantity) => (
                         <div
                           key={quantity}
                           className={`quantity-box ${item.quantity === quantity ? 'selected' : ''}`}
@@ -178,6 +188,17 @@ const Cart: React.FC = () => {
               ))}
             </IonList>
 
+            {/* Coupon input field */}
+            <div className="coupon-container">
+              <IonInput
+                value={couponCode}
+                placeholder="Enter coupon code"
+                onIonChange={(e) => setCouponCode(e.detail.value!)}
+                clearInput
+              />
+              <IonButton onClick={handleApplyCoupon}>Apply Coupon</IonButton>
+            </div>
+
             {/* Bill-like structure for total price with toggle */}
             <div className="cart-bill">
               <div className="order-summary-header" onClick={() => setShowOrderSummary(!showOrderSummary)}>
@@ -188,10 +209,10 @@ const Cart: React.FC = () => {
                 />
               </div>
               {showOrderSummary && (
-                <table className="bill-table" color='light'>
+                <table className="bill-table" color="light">
                   <thead>
                     <tr>
-                      <th color='light'>Product</th>
+                      <th>Product</th>
                       <th>Quantity</th>
                       <th>Price</th>
                       <th>Total</th>
@@ -209,6 +230,14 @@ const Cart: React.FC = () => {
                   </tbody>
                   <tfoot>
                     <tr>
+                      <td colSpan={3} style={{ textAlign: 'right', fontWeight: 'bold' }}>Subtotal</td>
+                      <td style={{ fontWeight: 'bold' }}>₹{calculateTotal() + discount}</td>
+                    </tr>
+                    <tr>
+                      <td colSpan={3} style={{ textAlign: 'right', fontWeight: 'bold' }}>Discount</td>
+                      <td style={{ fontWeight: 'bold' }}>- ₹{discount}</td>
+                    </tr>
+                    <tr>
                       <td colSpan={3} style={{ textAlign: 'right', fontWeight: 'bold' }}>Total</td>
                       <td style={{ fontWeight: 'bold' }}>₹{calculateTotal().toFixed(2)}</td>
                     </tr>
@@ -216,24 +245,15 @@ const Cart: React.FC = () => {
                 </table>
               )}
             </div>
-            
-            {/* Remove the redundant cart-total div */}
-            {/* 
-            <div className="cart-total">
-              <h2>Total: ₹{calculateTotal().toFixed(2)}</h2>
-            </div>
-            */}
 
             {/* Place Order Button */}
             <div className="cart-footer">
               <IonButton shape="round" className="place-order-btn" expand="full" onClick={handlePlaceOrder}>
                 Place Order
               </IonButton>
-            </div>
-            <div className="cart-footer">
-              <IonButton fill="outline" shape="round"  expand="full"  onClick={goToHomePage} className="continue-shopping-btn">
+              <IonButton shape="round" expand="full" color="light" onClick={goToHomePage}>
                 <IonIcon icon={homeOutline} />
-                Continue Shopping
+                Go to Home
               </IonButton>
             </div>
           </>
